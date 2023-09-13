@@ -65,7 +65,7 @@ public class Downloader
                     $"Starting download with offset: {offset / 1024 / 1024}MB, length {length / 1024 / 1024}MB, totally {contentLength / 1024 / 1024}MB");
                 var fileStream = await DownloadBlockAsync(url, offset, length);
                 //var bytes = UseStreamDotReadMethod(fileStream);
-                Console.WriteLine($"Downloaded stream length is {fileStream.Length}");
+                _logger.LogDebug($"Downloaded block from offset: {offset / 1024 / 1024}MB, stream length is {fileStream.Length}");
                 _writePool.QueueNew(async () =>
                     {
                         _logger.LogTrace($"Saving block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB.");
