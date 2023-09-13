@@ -1,8 +1,10 @@
 ﻿using Aiursoft.CommandFramework.Framework;
 using Aiursoft.CommandFramework.Models;
+using Aiursoft.CommandFramework.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System.CommandLine;
 
-namespace Anduin.HappyRecorder.Calendar.Handlers.Download;
+namespace Aiursoft.DotDownload.Calendar.Handlers.Download;
 
 public class DownloadHandler : CommandHandler
 {
@@ -17,6 +19,8 @@ public class DownloadHandler : CommandHandler
 
     private async Task Execute(bool verbose)
     {
-        Console.WriteLine("Hello world!");
+        var services = ServiceBuilder
+            .BuildServices<Startup>(verbose)
+            .BuildServiceProvider();
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Aiursoft.CommandFramework.Abstracts;
 using Aiursoft.CommandFramework.Framework;
-using Anduin.HappyRecorder.Calendar.Handlers.Download;
+using Aiursoft.DotDownload.Calendar.Handlers.Download;
 
-namespace Anduin.HappyRecorder.Calendar;
+namespace Aiursoft.DotDownload.Calendar;
 
 public class HttpPlugin : IPlugin
 {

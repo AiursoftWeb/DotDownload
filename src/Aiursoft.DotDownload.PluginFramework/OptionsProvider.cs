@@ -1,7 +1,7 @@
 ﻿using Aiursoft.CommandFramework.Models;
 using System.CommandLine;
 
-namespace Anduin.HappyRecorder.PluginFramework.Services.PluginFramework;
+namespace Aiursoft.DotDownload.PluginFramework.Services.PluginFramework;
 
 public static class OptionsProvider
 {

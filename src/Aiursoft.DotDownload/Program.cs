@@ -1,10 +1,10 @@
-using Anduin.HappyRecorder.PluginFramework.Services.PluginFramework;
+using Aiursoft.DotDownload.PluginFramework.Services.PluginFramework;
 using System.CommandLine;
 using System.Reflection;
 using Aiursoft.CommandFramework.Extensions;
-using Anduin.HappyRecorder.Calendar;
+using Aiursoft.DotDownload.Calendar;
 
-namespace Anduin.HappyRecorder.PluginFramework.Services;
+namespace Aiursoft.DotDownload.PluginFramework.Services;
 
 public class Program
 {
