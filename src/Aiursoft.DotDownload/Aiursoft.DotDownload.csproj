@@ -3,13 +3,13 @@
         <OutputType>Exe</OutputType>
         <Version>7.0.0</Version>
         <TargetFramework>net7.0</TargetFramework>
-        <AssemblyName>happy-recorder</AssemblyName>
-        <RootNamespace>Anduin.HappyRecorder</RootNamespace>
+        <AssemblyName>dot-download</AssemblyName>
+        <RootNamespace>Aiursoft.DotDownload</RootNamespace>
         <IsTestProject>false</IsTestProject>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <IsPackable>true</IsPackable>
         <PackAsTool>true</PackAsTool>
-        <ToolCommandName>happy-recorder</ToolCommandName>
+        <ToolCommandName>dot-download</ToolCommandName>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <SelfContained>false</SelfContained>
@@ -17,15 +17,15 @@
         <PublishReadyToRun>false</PublishReadyToRun>
         <PublishSingleFile>false</PublishSingleFile>
         <Company>Aiursoft</Company>
-        <Product>HappyRecorder</Product>
+        <Product>DotDownload</Product>
         <Authors>anduin</Authors>
-        <Description>A cli tool project helps recording happy times and reactions.</Description>
-        <PackageId>Anduin.HappyRecorder</PackageId>
-        <PackageTags>cli nuget dotnet happy</PackageTags>
+        <Description>A cli tool project helps downloading via HTTP.</Description>
+        <PackageId>Aiursoft.DotDownload</PackageId>
+        <PackageTags>cli nuget dotnet download</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageProjectUrl>https://gitlab.aiursoft.cn/Anduin/HappyRecorder</PackageProjectUrl>
+        <PackageProjectUrl>https://gitlab.aiursoft.cn/Aiursoft/DotDownload</PackageProjectUrl>
         <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://gitlab.aiursoft.cn/Anduin/HappyRecorder</RepositoryUrl>
+        <RepositoryUrl>https://gitlab.aiursoft.cn/Aiursoft/DotDownload</RepositoryUrl>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Aiursoft.DotDownload.Http\Aiursoft.DotDownload.Http.csproj" />

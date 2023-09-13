@@ -2,8 +2,8 @@
     <PropertyGroup>
         <OutputType>Library</OutputType>
         <TargetFramework>net7.0</TargetFramework>
-        <AssemblyName>Anduin.DotDownload.Http</AssemblyName>
-        <RootNamespace>Anduin.DotDownload.Http</RootNamespace>
+        <AssemblyName>Aiursoft.DotDownload.Http</AssemblyName>
+        <RootNamespace>Aiursoft.DotDownload.Http</RootNamespace>
         <IsTestProject>false</IsTestProject>
         <IsPackable>false</IsPackable>
         <ImplicitUsings>enable</ImplicitUsings>

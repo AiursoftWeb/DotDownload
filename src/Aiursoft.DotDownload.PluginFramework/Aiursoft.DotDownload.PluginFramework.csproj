@@ -2,8 +2,8 @@
     <PropertyGroup>
         <OutputType>Library</OutputType>
         <TargetFramework>net7.0</TargetFramework>
-        <AssemblyName>Anduin.HappyRecorder.PluginFramework</AssemblyName>
-        <RootNamespace>Anduin.HappyRecorder.PluginFramework</RootNamespace>
+        <AssemblyName>Aiursoft.DotDownload.PluginFramework</AssemblyName>
+        <RootNamespace>Aiursoft.DotDownload.PluginFramework</RootNamespace>
         <IsTestProject>false</IsTestProject>
         <IsPackable>false</IsPackable>
         <ImplicitUsings>enable</ImplicitUsings>

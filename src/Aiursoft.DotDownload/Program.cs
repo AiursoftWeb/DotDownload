@@ -4,7 +4,7 @@ using System.Reflection;
 using Aiursoft.CommandFramework.Extensions;
 using Aiursoft.DotDownload.Http;
 
-namespace Aiursoft.DotDownload.PluginFramework.Services;
+namespace Aiursoft.DotDownload;
 
 public class Program
 {
