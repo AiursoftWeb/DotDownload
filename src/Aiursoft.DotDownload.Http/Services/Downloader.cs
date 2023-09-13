@@ -64,15 +64,14 @@ public class Downloader
                 _logger.LogTrace(
                     $"Starting download with offset: {offset / 1024 / 1024}MB, length {length / 1024 / 1024}MB, totally {contentLength / 1024 / 1024}MB");
                 var fileStream = await DownloadBlockAsync(url, offset, length);
-                //var bytes = UseStreamDotReadMethod(fileStream);
-                _logger.LogDebug($"Downloaded block from offset: {offset / 1024 / 1024}MB, stream length is {fileStream.Length}");
                 _writePool.QueueNew(async () =>
                     {
-                        _logger.LogTrace($"Saving block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB.");
+                        _logger.LogTrace($"Saving block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB on local disk...");
                         await SaveBlockToDisk(fileStream, savePath, offset);
-                        _logger.LogTrace($"Finish block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB.");
+                        _logger.LogTrace($"Finish block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB to save on disk.");
                     },
-                    startTheEngine: false);
+                    startTheEngine: true,
+                    maxThreads: 1);
                 _logger.LogTrace(
                     $"Finished download with offset: {offset / 1024 / 1024}MB, length {length / 1024 / 1024}MB, totally {contentLength / 1024 / 1024}MB");
             });
