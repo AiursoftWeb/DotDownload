@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1853660A-713B-475B-BCFA-1F7D6BC96D22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{18F43B1A-B2A7-4BE0-B8ED-5CDAF4F1FA58}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.DotDownload", "src\Aiursoft.DotDownload\Aiursoft.DotDownload.csproj", "{11D2DF31-1AF3-422C-9891-B0CBF8C863A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.DotDownload.Tests", "tests\Aiursoft.DotDownload.Tests\Aiursoft.DotDownload.Tests.csproj", "{06692BC8-09CE-40DB-9611-1C68532E8525}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.DotDownload.Http", "src\Aiursoft.DotDownload.Http\Aiursoft.DotDownload.Http.csproj", "{3B23A555-F0F7-4C9F-AC46-F6AD8711E827}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.DotDownload.PluginFramework", "src\Aiursoft.DotDownload.PluginFramework\Aiursoft.DotDownload.PluginFramework.csproj", "{0E1DF270-11C7-4B48-87FD-1EA063A0B8D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11D2DF31-1AF3-422C-9891-B0CBF8C863A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D2DF31-1AF3-422C-9891-B0CBF8C863A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D2DF31-1AF3-422C-9891-B0CBF8C863A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D2DF31-1AF3-422C-9891-B0CBF8C863A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06692BC8-09CE-40DB-9611-1C68532E8525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06692BC8-09CE-40DB-9611-1C68532E8525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06692BC8-09CE-40DB-9611-1C68532E8525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06692BC8-09CE-40DB-9611-1C68532E8525}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B23A555-F0F7-4C9F-AC46-F6AD8711E827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B23A555-F0F7-4C9F-AC46-F6AD8711E827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B23A555-F0F7-4C9F-AC46-F6AD8711E827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B23A555-F0F7-4C9F-AC46-F6AD8711E827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E1DF270-11C7-4B48-87FD-1EA063A0B8D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E1DF270-11C7-4B48-87FD-1EA063A0B8D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E1DF270-11C7-4B48-87FD-1EA063A0B8D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E1DF270-11C7-4B48-87FD-1EA063A0B8D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{11D2DF31-1AF3-422C-9891-B0CBF8C863A4} = {1853660A-713B-475B-BCFA-1F7D6BC96D22}
+		{06692BC8-09CE-40DB-9611-1C68532E8525} = {18F43B1A-B2A7-4BE0-B8ED-5CDAF4F1FA58}
+		{3B23A555-F0F7-4C9F-AC46-F6AD8711E827} = {1853660A-713B-475B-BCFA-1F7D6BC96D22}
+		{0E1DF270-11C7-4B48-87FD-1EA063A0B8D9} = {1853660A-713B-475B-BCFA-1F7D6BC96D22}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3B3D91BA-D157-48F0-B66E-899B29902C2D}
+	EndGlobalSection
+EndGlobal

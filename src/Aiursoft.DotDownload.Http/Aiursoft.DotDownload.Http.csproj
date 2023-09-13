@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <AssemblyName>Anduin.HappyRecorder.Calendar</AssemblyName>
+        <RootNamespace>Anduin.HappyRecorder.Calendar</RootNamespace>
+        <IsTestProject>false</IsTestProject>
+        <IsPackable>false</IsPackable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Aiursoft.DotDownload.PluginFramework\Aiursoft.DotDownload.PluginFramework.csproj" />
+    </ItemGroup>
+</Project>
