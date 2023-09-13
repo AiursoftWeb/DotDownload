@@ -21,9 +21,7 @@ public class DownloadHandler : CommandHandler
         new(
             new[] { "-f", "--file" },
             getDefaultValue: () => string.Empty,
-            "The output file path to save the download result.")
-        {
-        };
+            "The output file path to save the download result.");
 
     private readonly Option<int> _threads =
         new(

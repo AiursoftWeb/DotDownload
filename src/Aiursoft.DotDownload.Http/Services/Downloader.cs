@@ -29,18 +29,31 @@ public class Downloader
         long blockSize = 4 * 1024 * 1024,
         int threads = 16)
     {
+        if (string.IsNullOrWhiteSpace(savePath))
+        {
+            // Auto generate based on url:
+            // savePath = ...
+        }
+
+        _logger.LogTrace($"Requesting {url}...");
         var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
         var contentLength = response.Content.Headers.ContentLength ?? 0;
+        _logger.LogInformation("File length: {ContentLength}MB", contentLength/1024/1024);
+        
+        // TODO: What if server 301 or 302?
+        // TODO: If the file doesn't support multiple threads downloading?
 
         // Create the file with the specified length.
         File.Delete(savePath);
-        using (var fileStream = new FileStream(savePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize: 4096, useAsync: true))
+        await using (var fileStream = new FileStream(savePath, FileMode.Create, FileAccess.Write, FileShare.None,
+                         bufferSize: 4096, useAsync: true))
         {
             fileStream.SetLength(contentLength);
             fileStream.Close();
         }
 
         long blockCount = (long)Math.Ceiling((double)contentLength / blockSize);
+        _logger.LogInformation("Blocks count: {BlockCount}", blockCount);
 
         for (var i = 0; i < blockCount; i++)
         {
@@ -48,15 +61,20 @@ public class Downloader
             var length = Math.Min(blockSize, contentLength - offset);
             _downloadPool.RegisterNewTaskToPool(async () =>
             {
-                Console.WriteLine($"Starting download with offset: {offset / 1024 / 1024}MB, length {length / 1024 / 1024}MB");
+                _logger.LogTrace(
+                    $"Starting download with offset: {offset / 1024 / 1024}MB, length {length / 1024 / 1024}MB, totally {contentLength / 1024 / 1024}MB");
                 var fileStream = await DownloadBlockAsync(url, offset, length);
                 //var bytes = UseStreamDotReadMethod(fileStream);
                 Console.WriteLine($"Downloaded stream length is {fileStream.Length}");
                 _writePool.QueueNew(async () =>
-                {
-                    await SaveBlockToDisk(fileStream, savePath, offset, length);
-                }, startTheEngine: false);
-                Console.WriteLine($"Finished download with offset: {offset / 1024 / 1024}MB, length {length / 1024 / 1024}MB");
+                    {
+                        _logger.LogTrace($"Saving block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB.");
+                        await SaveBlockToDisk(fileStream, savePath, offset);
+                        _logger.LogTrace($"Finish block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB.");
+                    },
+                    startTheEngine: false);
+                _logger.LogTrace(
+                    $"Finished download with offset: {offset / 1024 / 1024}MB, length {length / 1024 / 1024}MB, totally {contentLength / 1024 / 1024}MB");
             });
         }
 
@@ -77,13 +95,12 @@ public class Downloader
         return memoryStream;
     }
 
-    private async Task SaveBlockToDisk(MemoryStream stream, string path, long offset, long length)
+    private async Task SaveBlockToDisk(MemoryStream stream, string path, long offset)
     {
-        await using var fileStream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None, bufferSize: 4096, useAsync: true);
-        Console.WriteLine($"Writing block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB.");
+        await using var fileStream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None,
+            bufferSize: 4096, useAsync: true);
         fileStream.Seek(offset, SeekOrigin.Begin);
         await stream.CopyToAsync(fileStream);
-        Console.WriteLine($"Finishs block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB.");
         fileStream.Close();
     }
 }
