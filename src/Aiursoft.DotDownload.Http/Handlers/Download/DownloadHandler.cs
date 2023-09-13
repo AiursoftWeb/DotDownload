@@ -11,8 +11,8 @@ public class DownloadHandler : CommandHandler
 {
     private readonly Option<string> _url =
         new(
-            new[] { "-u", "--url" },
-            "The target url to connect to download.")
+            aliases: new[] { "-u", "--url" },
+            description: "The target url to connect to download.")
         {
             IsRequired = true
         };

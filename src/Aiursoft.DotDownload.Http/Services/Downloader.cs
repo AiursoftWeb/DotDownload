@@ -29,11 +29,13 @@ public class Downloader
         long blockSize = 4 * 1024 * 1024,
         int threads = 16)
     {
-        if (string.IsNullOrWhiteSpace(savePath))
+        var fileToWrite = savePath;
+        if (string.IsNullOrWhiteSpace(fileToWrite))
         {
-            // Auto generate based on url:
-            // savePath = ...
+            fileToWrite = "./" + Path.GetFileName(url);
         }
+
+        fileToWrite = GetAbsolutePath(Directory.GetCurrentDirectory(), fileToWrite);
 
         _logger.LogTrace($"Requesting {url}...");
         var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
@@ -44,8 +46,9 @@ public class Downloader
         // TODO: If the file doesn't support multiple threads downloading?
 
         // Create the file with the specified length.
-        File.Delete(savePath);
-        await using (var fileStream = new FileStream(savePath, FileMode.Create, FileAccess.Write, FileShare.None,
+        _logger.LogTrace($"File will be saved to {fileToWrite}...");
+        File.Delete(fileToWrite);
+        await using (var fileStream = new FileStream(fileToWrite, FileMode.Create, FileAccess.Write, FileShare.None,
                          bufferSize: 4096, useAsync: true))
         {
             fileStream.SetLength(contentLength);
@@ -67,7 +70,7 @@ public class Downloader
                 _writePool.QueueNew(async () =>
                     {
                         _logger.LogTrace($"Saving block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB on local disk...");
-                        await SaveBlockToDisk(fileStream, savePath, offset);
+                        await SaveBlockToDisk(fileStream, fileToWrite, offset);
                         _logger.LogTrace($"Finish block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB to save on disk.");
                     },
                     startTheEngine: true,
@@ -101,5 +104,14 @@ public class Downloader
         fileStream.Seek(offset, SeekOrigin.Begin);
         await stream.CopyToAsync(fileStream);
         fileStream.Close();
+    }
+
+    private static string GetAbsolutePath(string currentPath, string referencePath)
+    {
+        if (Path.IsPathRooted(referencePath)) return referencePath;
+
+        referencePath = referencePath.Replace('\\', Path.DirectorySeparatorChar);
+
+        return Path.GetFullPath(Path.Combine(currentPath, referencePath));
     }
 }
