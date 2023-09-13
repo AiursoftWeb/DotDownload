@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Net.Http.Headers;
 using Aiursoft.Canon;
 using Aiursoft.DotDownload.Http.Models;
@@ -43,7 +44,10 @@ public class Downloader : ITransientDependency
         int threads = 16,
         bool showProgressBar = false)
     {
-
+        ProgressBar? bar = null;
+        var watch = Stopwatch.StartNew();
+        watch.Start();
+        
         _logger.LogTrace($"Requesting {url}...");
         var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
         var fileLength = response.Content.Headers.ContentLength ?? 0;
@@ -69,7 +73,7 @@ public class Downloader : ITransientDependency
         var blockCount = (long)Math.Ceiling((double)fileLength / blockSize);
         _logger.LogInformation("Blocks count: {BlockCount}", blockCount);
 
-        var bar = new ProgressBar();
+        if (showProgressBar) bar = new ProgressBar();
         var savedBlocks = 0;
         for (var i = 0; i < blockCount; i++)
         {
@@ -86,7 +90,7 @@ public class Downloader : ITransientDependency
                             $"Saving block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB on local disk...");
                         await _diskService.SaveBlockToDisk(fileStream, fileToWrite, offset);
                         savedBlocks++;
-                        bar.Report((double)savedBlocks / blockCount);
+                        bar?.Report((double)savedBlocks / blockCount);
                         _logger.LogTrace(
                             $"Finish block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB to save on disk.");
                     },
@@ -99,7 +103,11 @@ public class Downloader : ITransientDependency
 
         await _downloadPool.RunAllTasksInPoolAsync(threads);
         await _writePool.Engine; // Make sure the write pool is finished.
-        bar.Dispose();
+        bar?.Dispose();
+        
+        watch.Stop();
+        _logger.LogTrace("Download finished in {Elapsed} seconds.", watch.Elapsed.TotalSeconds);
+        _logger.LogInformation("Download speed: {Speed}MB/s", (double)fileLength / 1024 / 1024 / watch.Elapsed.TotalSeconds);
     }
     
     private async Task<MemoryStream> DownloadBlockAsync(string url, long offset, long length)

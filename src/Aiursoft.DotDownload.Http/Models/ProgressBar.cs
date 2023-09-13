@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Aiursoft.DotDownload.Http.Models;
 
+[ExcludeFromCodeCoverage] // Hard to test in UT.
 public class ProgressBar : IProgress<double>
 {
     private const int BlockCount = 30;

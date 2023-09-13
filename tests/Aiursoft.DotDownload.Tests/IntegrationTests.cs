@@ -9,14 +9,9 @@ namespace Aiursoft.DotDownload.Tests;
 [TestClass]
 public class IntegrationTests
 {
-    private readonly RootCommand _program;
-
-    public IntegrationTests()
-    {
-        _program = new RootCommand("Test env.")
-            .AddGlobalOptions()
-            .AddPlugins(new HttpPlugin());
-    }
+    private readonly RootCommand _program = new RootCommand("Test env.")
+        .AddGlobalOptions()
+        .AddPlugins(new HttpPlugin());
 
     [TestMethod]
     public async Task InvokeHelp()
@@ -62,7 +57,7 @@ public class IntegrationTests
         {
             "download",
             "--url",
-            "https://sgp-ping.vultr.com/vultr.com.100MB.bin",
+            "https://videos.aiursoft.cn/media/encoded/13/anduin/eeca2cf5a82b4a12a399b90a1a7a7dfa.eeca2cf5a82b4a12a399b90a1a7a7dfa.2023-03-05_13-20-08.mkv.mp4",
             "--file",
             tempFile,
             "--verbose",
@@ -73,7 +68,7 @@ public class IntegrationTests
         // Assert
         Assert.AreEqual(0, result);
         Assert.IsTrue(File.Exists(tempFile));
-        Assert.AreEqual(new FileInfo(tempFile).Length, 100 * 1024 * 1024);
+        Assert.AreEqual(70013908, new FileInfo(tempFile).Length);
     }
 }
 
