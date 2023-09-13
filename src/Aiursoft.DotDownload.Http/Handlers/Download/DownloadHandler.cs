@@ -69,6 +69,6 @@ public class DownloadHandler : CommandHandler
         await host.StartAsync();
         
         var downloader = host.Services.GetRequiredService<Downloader>();
-        await downloader.DownloadAsync(url, savePath, blockSize, threads);
+        await downloader.DownloadAsync(url, savePath, blockSize, threads, showProgressBar: !verbose);
     }
 }

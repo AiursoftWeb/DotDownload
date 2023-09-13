@@ -9,6 +9,10 @@ This project helps you download a file with multiple threads.
 
 ## Install
 
+Requirements:
+
+1. [.NET 7 SDK](http://dot.net/)
+
 Run the following command to install this tool:
 
 ```bash

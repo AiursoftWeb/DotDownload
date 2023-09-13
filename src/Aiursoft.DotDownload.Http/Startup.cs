@@ -1,6 +1,6 @@
 ﻿using Aiursoft.Canon;
 using Aiursoft.CommandFramework.Abstracts;
-using Aiursoft.DotDownload.PluginFramework.Handlers.Download;
+using Aiursoft.Scanner;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aiursoft.DotDownload.Http;
@@ -11,6 +11,6 @@ public class Startup : IStartUp
     {
         services.AddHttpClient();
         services.AddTaskCanon();
-        services.AddTransient<Downloader>();
+        services.AddScannedDependencies();
     }
 }

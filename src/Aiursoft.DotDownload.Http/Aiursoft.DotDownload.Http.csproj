@@ -13,6 +13,7 @@
         <ProjectReference Include="..\Aiursoft.DotDownload.PluginFramework\Aiursoft.DotDownload.PluginFramework.csproj" />
     </ItemGroup>
     <ItemGroup>
+      <PackageReference Include="Aiursoft.Scanner" Version="7.0.0" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     </ItemGroup>
 </Project>
