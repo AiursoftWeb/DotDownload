@@ -50,7 +50,7 @@ public class Downloader : ITransientDependency
         _logger.LogInformation("File length: {ContentLength}MB", fileLength / 1024 / 1024);
 
         // TODO: What if server 301 or 302? Follow redirect.
-        if (response.Headers.AcceptRanges?.Contains("bytes") != true)
+        if (response.Headers.AcceptRanges.Contains("bytes") != true)
         {
             _logger.LogWarning("The server doesn't support multiple threads downloading. Using single thread...");
             threads = 1;

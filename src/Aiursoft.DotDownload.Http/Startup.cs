@@ -11,6 +11,6 @@ public class Startup : IStartUp
     {
         services.AddHttpClient();
         services.AddTaskCanon();
-        services.AddScannedDependencies();
+        services.AddAssemblyDependencies(typeof(Startup).Assembly);
     }
 }

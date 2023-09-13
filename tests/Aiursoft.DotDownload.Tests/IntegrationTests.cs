@@ -45,5 +45,35 @@ public class IntegrationTests
         var result = await _program.InvokeAsync(Array.Empty<string>());
         Assert.AreEqual(1, result);
     }
+    
+    [TestMethod]
+    public async Task InvokeDownload()
+    {
+        // Prepare
+        var tempFolder = Path.Combine(Path.GetTempPath(), $"DotDownload-UT-{Guid.NewGuid()}");
+        var tempFile = Path.Combine(tempFolder, "testfile.bin");
+        if (!Directory.Exists(tempFolder))
+        {
+            Directory.CreateDirectory(tempFolder);
+        }
+
+        // Run
+        var result = await _program.InvokeAsync(new[]
+        {
+            "download",
+            "--url",
+            "https://sgp-ping.vultr.com/vultr.com.100MB.bin",
+            "--file",
+            tempFile,
+            "--verbose",
+            "--threads",
+            "16"
+        });
+
+        // Assert
+        Assert.AreEqual(0, result);
+        Assert.IsTrue(File.Exists(tempFile));
+        Assert.AreEqual(new FileInfo(tempFile).Length, 100 * 1024 * 1024);
+    }
 }
 
