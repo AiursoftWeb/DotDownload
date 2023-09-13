@@ -1,8 +1,8 @@
 ﻿using Aiursoft.CommandFramework.Abstracts;
 using Aiursoft.CommandFramework.Framework;
-using Aiursoft.DotDownload.Calendar.Handlers.Download;
+using Aiursoft.DotDownload.Http.Handlers.Download;
 
-namespace Aiursoft.DotDownload.Calendar;
+namespace Aiursoft.DotDownload.Http;
 
 public class HttpPlugin : IPlugin
 {

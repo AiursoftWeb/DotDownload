@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Headers;
 
-namespace Downloader;
+namespace DownloaderOBS;
 
 public static class Program
 {

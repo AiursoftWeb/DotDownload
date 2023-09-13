@@ -1,8 +1,8 @@
 ﻿using Aiursoft.CommandFramework.Extensions;
-using Aiursoft.DotDownload.Calendar;
 using Aiursoft.DotDownload.PluginFramework.Services.PluginFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.CommandLine;
+using Aiursoft.DotDownload.Http;
 
 namespace Aiursoft.DotDownload.Tests;
 

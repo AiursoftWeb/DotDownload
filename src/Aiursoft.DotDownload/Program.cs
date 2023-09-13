@@ -2,7 +2,7 @@ using Aiursoft.DotDownload.PluginFramework.Services.PluginFramework;
 using System.CommandLine;
 using System.Reflection;
 using Aiursoft.CommandFramework.Extensions;
-using Aiursoft.DotDownload.Calendar;
+using Aiursoft.DotDownload.Http;
 
 namespace Aiursoft.DotDownload.PluginFramework.Services;
 
