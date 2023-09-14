@@ -61,6 +61,7 @@ public class Downloader : ITransientDependency
         if (response.Headers.AcceptRanges.Contains("bytes") != true)
         {
             _logger.LogWarning("The server doesn't support multiple threads downloading. Using single block...");
+            showProgressBar = false;
             threads = 1;
             blockSize = fileLength;
         }

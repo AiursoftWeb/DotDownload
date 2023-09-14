@@ -12,7 +12,7 @@ public class DownloadHandler : CommandHandler
     private readonly Option<string> _url =
         new(
             aliases: new[] { "-u", "--url" },
-            description: "The target url to connect to download.")
+            description: "The target url to download.")
         {
             IsRequired = true
         };
@@ -27,7 +27,7 @@ public class DownloadHandler : CommandHandler
         new(
             new[] { "-t", "--threads" },
             getDefaultValue: () => 16,
-            "How many threads to connect to download.");
+            "Max threads allowed to connects to the download server.");
 
     private readonly Option<int> _blockSize =
         new(
