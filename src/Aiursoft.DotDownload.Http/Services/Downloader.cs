@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Net.Http.Headers;
 using Aiursoft.Canon;
 using Aiursoft.DotDownload.Http.Models;
+using Aiursoft.DotDownload.Http.Services;
 using Aiursoft.Scanner.Abstractions;
 using Microsoft.Extensions.Logging;
 
@@ -12,7 +13,8 @@ public class Downloader : ITransientDependency
     private readonly DiskService _diskService;
     private readonly HttpClient _httpClient;
     private readonly CanonPool _downloadPool;
-    private readonly CanonQueue _writePool;
+    private readonly CanonQueue _diskWriteQueue;
+    private readonly HttpBlockDownloader httpBlockDownloader;
     private readonly ILogger<Downloader> _logger;
 
     public Downloader(
@@ -20,12 +22,14 @@ public class Downloader : ITransientDependency
         HttpClient httpClient,
         CanonPool downloadPool,
         CanonQueue writePool,
+        HttpBlockDownloader httpBlockDownloader,
         ILogger<Downloader> logger)
     {
         _diskService = diskService;
         _httpClient = httpClient;
         _downloadPool = downloadPool;
-        _writePool = writePool;
+        _diskWriteQueue = writePool;
+        this.httpBlockDownloader = httpBlockDownloader;
         _logger = logger;
     }
 
@@ -56,20 +60,21 @@ public class Downloader : ITransientDependency
         // TODO: What if server 301 or 302? Follow redirect.
         if (response.Headers.AcceptRanges.Contains("bytes") != true)
         {
-            _logger.LogWarning("The server doesn't support multiple threads downloading. Using single thread...");
+            _logger.LogWarning("The server doesn't support multiple threads downloading. Using single block...");
             threads = 1;
+            blockSize = fileLength;
         }
 
-        var fileToWrite = PathExtensions.GetFilePathToSave(savePath, url);
-        _logger.LogInformation($"File will be saved to {fileToWrite}...");
+        savePath = PathExtensions.GetFilePathToSave(savePath, url);
+        _logger.LogInformation($"File will be saved to {savePath}...");
 
-        if (File.Exists(fileToWrite))
+        if (File.Exists(savePath))
         {
             _logger.LogWarning("File already exists. Deleting...");
-            File.Delete(fileToWrite);
+            File.Delete(savePath);
         }
         
-        _diskService.CreateFileAndAllocateSpace(fileToWrite, fileLength);
+        _diskService.CreateFileAndAllocateSpace(savePath, fileLength);
         var blockCount = (long)Math.Ceiling((double)fileLength / blockSize);
         _logger.LogInformation("Blocks count: {BlockCount}", blockCount);
 
@@ -83,12 +88,12 @@ public class Downloader : ITransientDependency
             {
                 _logger.LogTrace(
                     $"Starting download with offset: {offset / 1024 / 1024}MB, length {length / 1024 / 1024}MB, totally {fileLength / 1024 / 1024}MB");
-                var fileStream = await DownloadBlockAsync(url, offset, length);
-                _writePool.QueueNew(async () =>
+                var block = await httpBlockDownloader.DownloadBlockAsync(url, offset, length);
+                _diskWriteQueue.QueueNew(async () =>
                     {
                         _logger.LogTrace(
                             $"Saving block {offset / 1024 / 1024}MB to {(offset + length) / 1024 / 1024}MB on local disk...");
-                        await _diskService.SaveBlockToDisk(fileStream, fileToWrite, offset);
+                        await _diskService.SaveBlockToDisk(block, savePath, offset);
                         savedBlocks++;
                         bar?.Report((double)savedBlocks / blockCount);
                         _logger.LogTrace(
@@ -102,7 +107,7 @@ public class Downloader : ITransientDependency
         }
 
         await _downloadPool.RunAllTasksInPoolAsync(threads);
-        await _writePool.Engine; // Make sure the write pool is finished.
+        await _diskWriteQueue.Engine; // Make sure the write pool is finished.
         bar?.Dispose();
         
         watch.Stop();
@@ -110,16 +115,5 @@ public class Downloader : ITransientDependency
         _logger.LogInformation("Download speed: {Speed}MB/s", (double)fileLength / 1024 / 1024 / watch.Elapsed.TotalSeconds);
     }
     
-    private async Task<MemoryStream> DownloadBlockAsync(string url, long offset, long length)
-    {
-        var request = new HttpRequestMessage(HttpMethod.Get, url);
-        request.Headers.Range = new RangeHeaderValue(offset, offset + length - 1);
-        var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
-        response.EnsureSuccessStatusCode();
-        var remoteStream = await response.Content.ReadAsStreamAsync();
-        var memoryStream = new MemoryStream();
-        await remoteStream.CopyToAsync(memoryStream);
-        memoryStream.Seek(0, SeekOrigin.Begin);
-        return memoryStream;
-    }
+
 }
