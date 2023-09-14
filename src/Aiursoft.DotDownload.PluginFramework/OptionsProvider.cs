@@ -9,7 +9,6 @@ public static class OptionsProvider
     {
         var options = new Option[]
         {
-            CommonOptionsProvider.DryRunOption,
             CommonOptionsProvider.VerboseOption
         };
         foreach (var option in options)

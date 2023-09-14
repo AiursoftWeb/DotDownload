@@ -45,7 +45,6 @@ public class DownloadHandler : CommandHandler
         command.SetHandler(
             Execute,
             CommonOptionsProvider.VerboseOption,
-            CommonOptionsProvider.DryRunOption,
             _url,
             _savePath,
             _threads,
@@ -60,7 +59,7 @@ public class DownloadHandler : CommandHandler
         _blockSize
     };
 
-    private async Task Execute(bool verbose, bool dryRun, string url, string savePath, int threads, int blockSize)
+    private async Task Execute(bool verbose, string url, string savePath, int threads, int blockSize)
     {
         var host = ServiceBuilder
             .BuildHost<Startup>(verbose)
