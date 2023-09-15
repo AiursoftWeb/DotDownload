@@ -1,13 +1,8 @@
 ﻿using System.Diagnostics;
-using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Channels;
-using Aiursoft.AiurEventSyncer.Abstract;
-using Aiursoft.AiurEventSyncer.Remotes;
 using Aiursoft.AiurProtocol;
 using Aiursoft.AiurVersionControl.CRUD;
-using Aiursoft.AiurVersionControl.Models;
 using Aiursoft.AiurVersionControl.Remotes;
 using Aiursoft.Canon;
 using Aiursoft.DotDownload.Core.Models;
@@ -55,7 +50,7 @@ public class P2pDownloader : ITransientDependency
     /// </summary>
     /// <param name="url">Http URL to download.</param>
     /// <param name="savePath">Path to save.</param>
-    /// <param name="blockSize">Block size. It will download every blocks in parallel and save those blocks to disk with a queue.</param>
+    /// <param name="useTracker">Tracker server to use.</param>
     /// <param name="threads">Max threads to download.</param>
     /// <param name="showProgressBar">If to show the progress bar.</param>
     public async Task DownloadAsync(
@@ -95,7 +90,7 @@ public class P2pDownloader : ITransientDependency
         var blockCount = (long)Math.Ceiling((double)fileLength / blockSize);
         _logger.LogInformation("Blocks count: {BlockCount}", blockCount);
 
-        var database = repos.GetCollection(GetFileId(url).ToString());
+        var database = repos.GetCollection(GetFileId(url));
         var trackerResponse = await trackerAccess.ServerInfoAsync(useTracker);
         var trackerEndpoint = new AiurApiEndpoint(useTracker, $"/api/{GetFileId(url)}/repo.ares", new { }).ToString();
         _logger.LogInformation($"Connecting to tracker: {trackerEndpoint} to exchange block share info.");

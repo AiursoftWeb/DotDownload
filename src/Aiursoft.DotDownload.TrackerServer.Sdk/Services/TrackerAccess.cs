@@ -1,20 +1,15 @@
 ﻿using Aiursoft.AiurProtocol;
 using Aiursoft.Download.TrackerServer.Sdk.Models;
 using Aiursoft.Scanner.Abstractions;
-using Microsoft.Extensions.Logging;
 
 namespace Aiursoft.Download.TrackerServer.Sdk.Services
 {
     public class TrackerAccess : IScopedDependency
     {
-        private readonly ILogger<TrackerAccess> logger;
         private readonly AiurProtocolClient aiurProtocol;
 
-        public TrackerAccess(
-            ILogger<TrackerAccess> logger,  
-            AiurProtocolClient aiurProtocol)
+        public TrackerAccess(AiurProtocolClient aiurProtocol)
         {
-            this.logger = logger;
             this.aiurProtocol = aiurProtocol;
         }
 

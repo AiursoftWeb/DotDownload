@@ -1,5 +1,3 @@
-using Aiursoft.CSTools.Tools;
-using Microsoft.EntityFrameworkCore;
 using static Aiursoft.WebTools.Extends;
 
 namespace Aiursoft.Download.TrackerServer;

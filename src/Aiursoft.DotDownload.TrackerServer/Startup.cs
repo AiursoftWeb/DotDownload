@@ -3,8 +3,6 @@ using Aiursoft.WebTools.Models;
 using System.Reflection;
 using Aiursoft.AiurProtocol.Server;
 using Aiursoft.Canon;
-using Aiursoft.AiurProtocol;
-using Aiursoft.Download.TrackerServer.Sdk.Models;
 using Aiursoft.Download.TrackerServer.Sdk;
 
 namespace Aiursoft.Download.TrackerServer
