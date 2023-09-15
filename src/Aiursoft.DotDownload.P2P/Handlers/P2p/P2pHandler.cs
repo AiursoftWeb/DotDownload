@@ -1,5 +1,8 @@
 ﻿using Aiursoft.CommandFramework.Framework;
 using Aiursoft.CommandFramework.Models;
+using Aiursoft.CommandFramework.Services;
+using Aiursoft.DotDownload.P2P;
+using Microsoft.Extensions.DependencyInjection;
 using System.CommandLine;
 
 namespace Aiursoft.DotDownload.P2p.Handlers.Download;
@@ -28,7 +31,7 @@ public class P2pHandler : CommandHandler
             IsRequired = true
         };
 
-    public override string Name => "download with p2p";
+    public override string Name => "download-p2p";
 
     public override string Description => "Download an HTTP Url with p2p, requires a tracker server.";
 
@@ -51,6 +54,11 @@ public class P2pHandler : CommandHandler
 
     private async Task Execute(bool verbose, string url, string savePath, string tracker)
     {
-        await Task.Delay(0);
+        var host = ServiceBuilder
+        .BuildHost<Startup>(verbose)
+        .Build();
+
+        var downloader = host.Services.GetRequiredService<P2pDownloader>();
+        await downloader.DownloadAsync(url, tracker, savePath, showProgressBar: !verbose);
     }
 }

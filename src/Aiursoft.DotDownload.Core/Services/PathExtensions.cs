@@ -1,8 +1,8 @@
 namespace Aiursoft.DotDownload.Core.Services;
 
-internal static class PathExtensions
+public static class PathExtensions
 {
-    internal static string GetFilePathToSave(string userInput, string url)
+    public static string GetFilePathToSave(string userInput, string url)
     {
         var fileToWrite = userInput;
         if (string.IsNullOrWhiteSpace(fileToWrite))

@@ -13,12 +13,9 @@ namespace Aiursoft.Download.TrackerServer
     {
         public void ConfigureServices(IConfiguration configuration, IWebHostEnvironment environment, IServiceCollection services)
         {
-            var knownLists = configuration.GetSection("KnownLinks");
-
             services.AddTaskCanon();
             services.AddScannedDependencies();
             services.AddTrackerAccess();
-            services.Configure<List<KnownLink>>(knownLists);
 
             services
                 .AddControllers()
@@ -28,6 +25,7 @@ namespace Aiursoft.Download.TrackerServer
 
         public void Configure(WebApplication app)
         {
+            app.UseWebSockets();
             app.UseRouting();
             app.MapDefaultControllerRoute();
         }

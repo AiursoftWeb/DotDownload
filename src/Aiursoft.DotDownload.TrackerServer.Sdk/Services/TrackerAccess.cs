@@ -1,10 +1,11 @@
 ﻿using Aiursoft.AiurProtocol;
 using Aiursoft.Download.TrackerServer.Sdk.Models;
+using Aiursoft.Scanner.Abstractions;
 using Microsoft.Extensions.Logging;
 
 namespace Aiursoft.Download.TrackerServer.Sdk.Services
 {
-    public class TrackerAccess
+    public class TrackerAccess : IScopedDependency
     {
         private readonly ILogger<TrackerAccess> logger;
         private readonly AiurProtocolClient aiurProtocol;
@@ -17,22 +18,11 @@ namespace Aiursoft.Download.TrackerServer.Sdk.Services
             this.aiurProtocol = aiurProtocol;
         }
 
-        public async Task<AiurResponse> ServerInfoAsync(string endpoint)
+        public async Task<ServerInfo> ServerInfoAsync(string endpoint)
         {
             var url = new AiurApiEndpoint(host: endpoint, "api", "info", param: new { });
-            var result = await aiurProtocol.Get<AiurResponse>(url);
+            var result = await aiurProtocol.Get<ServerInfo>(url);
             return result;
-        }
-
-        public async Task<AiurResponse> RegisterOnRemoteAsync(string remoteServer, string localEndpoint)
-        {
-            var url = new AiurApiEndpoint(host: remoteServer, "api", "register", param: new { });
-            var payload = new AiurApiPayload(param: new RegisterAddressModel 
-            {
-                MyEndpoint = localEndpoint
-            });
-            logger.LogInformation($"Registering on remote: {remoteServer}...");
-            return await aiurProtocol.Post<AiurResponse>(url, payload);
         }
     }
 }

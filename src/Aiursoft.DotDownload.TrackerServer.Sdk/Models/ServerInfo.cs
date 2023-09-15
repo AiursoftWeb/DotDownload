@@ -1,9 +1,12 @@
 ﻿using Aiursoft.AiurProtocol;
+using Aiursoft.AiurVersionControl.CRUD;
+using Aiursoft.DotDownload.Core.Models;
+using System.Collections.Concurrent;
 
 namespace Aiursoft.Download.TrackerServer.Sdk.Models;
 
 public class ServerInfo : AiurResponse
 {
-    public string? Endpoint { get; set; }
-    public List<KnownLink> KnownLinks { get; set; } = new List<KnownLink>();
+    public required string RequesterIp { get; set; }
+    public required ConcurrentDictionary<string, CollectionRepository<HasRecord>> Total { get; set; }
 }

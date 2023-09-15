@@ -1,28 +1,20 @@
 ﻿using Aiursoft.AiurProtocol;
 using Aiursoft.AiurProtocol.Server;
-using Aiursoft.Download.TrackerServer.Sdk;
+using Aiursoft.DotDownload.Core.Services;
 using Aiursoft.Download.TrackerServer.Sdk.Models;
-using Aiursoft.Download.TrackerServer.Sdk.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+using Aiursoft.AiurEventSyncer.WebExtends;
 
 namespace Aiursoft.Download.TrackerServer.Controllers;
 
 [Route("api")]
 public class ApiController : Controller
 {
-    private readonly ILogger<ApiController> logger;
-    private readonly TrackerAccess trackerAccess;
-    private readonly IConfiguration configuration;
+    private readonly InMemoryRepositoryManager repos;
 
-    public ApiController(
-        ILogger<ApiController> logger,
-        TrackerAccess trackerAccess,
-        IConfiguration configuration)
+    public ApiController(InMemoryRepositoryManager repos)
     {
-        this.logger = logger;
-        this.trackerAccess = trackerAccess;
-        this.configuration = configuration;
+        this.repos = repos;
     }
 
     [Route("info")]
@@ -31,19 +23,18 @@ public class ApiController : Controller
         return this.Protocol(new ServerInfo
         {
             Code = Code.ResultShown,
-            Message = "Basic information shown for this server.",
-            Endpoint = this.configuration["Endpoint"],
+            Message = "This is a Aiursoft.DotDownload Tracker server.",
+            RequesterIp = HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString() ?? throw new InvalidOperationException("IP is null!"),
+
+            // Debug usage.
+            Total = repos.GetTotal()
         });
     }
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register([FromForm]RegisterAddressModel model)
+    [Route("{channel}/repo.ares")]
+    public Task<IActionResult> ReturnRepoDemo([FromRoute]string channel, [FromQuery]string start)
     {
-        logger.LogInformation($"A server is requesting to register here. It's endpoint is {model.MyEndpoint}. Requesting his info..");
-
-        var hisInfo = await trackerAccess.ServerInfoAsync(model.MyEndpoint);
-        
-        // TODO.
-        return this.Protocol(Code.JobDone, "Successfully registered!");
+        var repo = repos.GetCollection(channel);
+        return HttpContext.RepositoryAsync(repo, start);
     }
 }
