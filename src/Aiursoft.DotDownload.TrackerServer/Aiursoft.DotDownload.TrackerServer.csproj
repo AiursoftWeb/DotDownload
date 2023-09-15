@@ -1,6 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
+        <OutputType>Library</OutputType>
         <TargetFramework>net7.0</TargetFramework>
         <AssemblyName>Aiursoft.Download.TrackerServer</AssemblyName>
         <RootNamespace>Aiursoft.Download.TrackerServer</RootNamespace>
@@ -9,6 +9,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Aiursoft.AiurEventSyncer.WebExtends" Version="7.0.1" />
         <PackageReference Include="Aiursoft.AiurProtocol.Server" Version="7.0.1" />

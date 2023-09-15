@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <Version>7.0.5</Version>
+        <Version>7.0.6</Version>
         <TargetFramework>net7.0</TargetFramework>
         <AssemblyName>dot-download</AssemblyName>
         <RootNamespace>Aiursoft.DotDownload</RootNamespace>
@@ -12,6 +12,10 @@
         <ToolCommandName>dot-download</ToolCommandName>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <SelfContained>false</SelfContained>
+        <PublishTrimmed>false</PublishTrimmed>
+        <PublishReadyToRun>false</PublishReadyToRun>
+        <PublishSingleFile>false</PublishSingleFile>
         <Company>Aiursoft</Company>
         <Product>DotDownload</Product>
         <Authors>anduin</Authors>

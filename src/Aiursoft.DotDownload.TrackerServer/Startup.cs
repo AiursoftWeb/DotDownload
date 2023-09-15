@@ -4,6 +4,10 @@ using System.Reflection;
 using Aiursoft.AiurProtocol.Server;
 using Aiursoft.Canon;
 using Aiursoft.Download.TrackerServer.Sdk;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
 
 namespace Aiursoft.Download.TrackerServer
 {
