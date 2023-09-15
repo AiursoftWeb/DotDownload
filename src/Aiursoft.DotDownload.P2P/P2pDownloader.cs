@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Channels;
 using Aiursoft.AiurEventSyncer.Abstract;
 using Aiursoft.AiurEventSyncer.Remotes;
@@ -93,9 +95,9 @@ public class P2pDownloader : ITransientDependency
         var blockCount = (long)Math.Ceiling((double)fileLength / blockSize);
         _logger.LogInformation("Blocks count: {BlockCount}", blockCount);
 
-        var database = repos.GetCollection(url.GetHashCode().ToString());
+        var database = repos.GetCollection(GetFileId(url).ToString());
         var trackerResponse = await trackerAccess.ServerInfoAsync(useTracker);
-        var trackerEndpoint = new AiurApiEndpoint(useTracker, $"/api/{url.GetHashCode()}/repo.ares", new { }).ToString();
+        var trackerEndpoint = new AiurApiEndpoint(useTracker, $"/api/{GetFileId(url)}/repo.ares", new { }).ToString();
         _logger.LogInformation($"Connecting to tracker: {trackerEndpoint} to exchange block share info.");
         var remote = new WebSocketRemoteWithWorkSpace<CollectionWorkSpace<HasRecord>>(trackerEndpoint);
         await remote.AttachAsync(database);
@@ -147,5 +149,10 @@ public class P2pDownloader : ITransientDependency
         _logger.LogInformation("Download speed: {Speed}MB/s", (double)fileLength / 1024 / 1024 / watch.Elapsed.TotalSeconds);
     }
 
-
+    public static string GetFileId(string value)
+    {
+        using var hash = SHA256.Create();
+        var byteArray = hash.ComputeHash(Encoding.UTF8.GetBytes(value));
+        return Convert.ToHexString(byteArray);
+    }
 }
