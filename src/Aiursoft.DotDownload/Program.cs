@@ -1,8 +1,9 @@
-using Aiursoft.DotDownload.PluginFramework.Services.PluginFramework;
+using Aiursoft.DotDownload.PluginFramework;
 using System.CommandLine;
 using System.Reflection;
 using Aiursoft.CommandFramework.Extensions;
 using Aiursoft.DotDownload.Http;
+using Aiursoft.DotDownload.P2p;
 
 namespace Aiursoft.DotDownload;
 
@@ -15,7 +16,8 @@ public class Program
         var program = new RootCommand(descriptionAttribute ?? "Unknown usage.")
             .AddGlobalOptions()
             .AddPlugins(
-                new HttpPlugin()
+                new HttpPlugin(),
+                new P2pPlugin()
             );
 
         await program.InvokeAsync(args);

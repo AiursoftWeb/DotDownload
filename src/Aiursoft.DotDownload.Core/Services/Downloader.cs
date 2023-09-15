@@ -1,11 +1,10 @@
 using System.Diagnostics;
 using Aiursoft.Canon;
-using Aiursoft.DotDownload.Http.Models;
-using Aiursoft.DotDownload.Http.Services;
+using Aiursoft.DotDownload.Core.Models;
 using Aiursoft.Scanner.Abstractions;
 using Microsoft.Extensions.Logging;
 
-namespace Aiursoft.DotDownload.PluginFramework.Handlers.Download;
+namespace Aiursoft.DotDownload.Core.Services;
 
 public class Downloader : ITransientDependency
 {

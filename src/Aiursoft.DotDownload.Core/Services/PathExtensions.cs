@@ -1,4 +1,4 @@
-namespace Aiursoft.DotDownload.PluginFramework.Handlers.Download;
+namespace Aiursoft.DotDownload.Core.Services;
 
 internal static class PathExtensions
 {

@@ -1,6 +1,6 @@
 using Aiursoft.Scanner.Abstractions;
 
-namespace Aiursoft.DotDownload.PluginFramework.Handlers.Download;
+namespace Aiursoft.DotDownload.Core.Services;
 
 public class DiskService : ITransientDependency
 {

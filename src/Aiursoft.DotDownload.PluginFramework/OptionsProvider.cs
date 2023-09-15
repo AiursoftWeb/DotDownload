@@ -1,7 +1,7 @@
 ﻿using Aiursoft.CommandFramework.Models;
 using System.CommandLine;
 
-namespace Aiursoft.DotDownload.PluginFramework.Services.PluginFramework;
+namespace Aiursoft.DotDownload.PluginFramework;
 
 public static class OptionsProvider
 {

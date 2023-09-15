@@ -1,8 +1,8 @@
 ﻿using Aiursoft.Scanner.Abstractions;
 using System.Net.Http.Headers;
 
-namespace Aiursoft.DotDownload.Http.Services
-{
+namespace Aiursoft.DotDownload.Core.Services;
+
     public class HttpBlockDownloader : ITransientDependency
     {
         private readonly HttpClient _httpClient;
@@ -25,4 +25,3 @@ namespace Aiursoft.DotDownload.Http.Services
             return memoryStream;
         }
     }
-}

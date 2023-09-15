@@ -10,6 +10,7 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
+        <ProjectReference Include="..\Aiursoft.DotDownload.Core\Aiursoft.DotDownload.Core.csproj" />
         <ProjectReference Include="..\Aiursoft.DotDownload.PluginFramework\Aiursoft.DotDownload.PluginFramework.csproj" />
     </ItemGroup>
     <ItemGroup>

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <AssemblyName>Aiursoft.DotDownload.TrackerServer.Sdk</AssemblyName>
+        <RootNamespace>Aiursoft.DotDownload.TrackerServer.Sdk</RootNamespace>
+        <IsTestProject>false</IsTestProject>
+        <IsPackable>false</IsPackable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Aiursoft.AiurProtocol" Version="7.0.1" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Aiursoft.DotDownload.Core\Aiursoft.DotDownload.Core.csproj" />
+    </ItemGroup>
+</Project>

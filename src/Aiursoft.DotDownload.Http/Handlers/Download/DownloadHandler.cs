@@ -2,8 +2,8 @@
 using Aiursoft.CommandFramework.Models;
 using Aiursoft.CommandFramework.Services;
 using System.CommandLine;
-using Aiursoft.DotDownload.PluginFramework.Handlers.Download;
 using Microsoft.Extensions.DependencyInjection;
+using Aiursoft.DotDownload.Core.Services;
 
 namespace Aiursoft.DotDownload.Http.Handlers.Download;
 

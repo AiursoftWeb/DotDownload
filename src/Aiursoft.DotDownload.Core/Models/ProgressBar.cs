@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-namespace Aiursoft.DotDownload.Http.Models;
+namespace Aiursoft.DotDownload.Core.Models;
 
 [ExcludeFromCodeCoverage] // Hard to test in UT.
 public class ProgressBar : IProgress<double>
