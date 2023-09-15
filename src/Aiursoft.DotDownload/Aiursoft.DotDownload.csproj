@@ -12,10 +12,6 @@
         <ToolCommandName>dot-download</ToolCommandName>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <SelfContained>false</SelfContained>
-        <PublishTrimmed>false</PublishTrimmed>
-        <PublishReadyToRun>false</PublishReadyToRun>
-        <PublishSingleFile>false</PublishSingleFile>
         <Company>Aiursoft</Company>
         <Product>DotDownload</Product>
         <Authors>anduin</Authors>
