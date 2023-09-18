@@ -1,9 +1,8 @@
 ﻿using Aiursoft.CommandFramework.Framework;
 using Aiursoft.CommandFramework.Models;
-using Aiursoft.CommandFramework.Services;
-using Aiursoft.DotDownload.P2P;
-using Aiursoft.DotDownload.TrackerServer.Sdk;
+using Aiursoft.DotDownload.TrackerServer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System.CommandLine;
 
 namespace Aiursoft.DotDownload.P2p.Handlers.Download;
@@ -32,6 +31,14 @@ public class P2pHandler : CommandHandler
             IsRequired = true
         };
 
+    private readonly Option<int> _serverPort =
+        new(
+            new[] { "-p", "--port" },
+            () => 8100,
+            "Tracker server port to host.")
+        {
+        };
+
     public override string Name => "download-p2p";
 
     public override string Description => "Download an HTTP Url with p2p, requires a tracker server.";
@@ -43,7 +50,8 @@ public class P2pHandler : CommandHandler
             CommonOptionsProvider.VerboseOption,
             _url,
             _savePath,
-            _tracker);
+            _tracker,
+            _serverPort);
     }
 
     public override Option[] GetCommandOptions() => new Option[]
@@ -51,17 +59,18 @@ public class P2pHandler : CommandHandler
         _url,
         _savePath,
         _tracker,
+        _serverPort
     };
 
-    private async Task Execute(bool verbose, string url, string savePath, string tracker)
+    private async Task Execute(bool verbose, string url, string savePath, string tracker, int port)
     {
-        var host = ServiceBuilder
-        .BuildHost<Startup>(verbose)
-        .Build();
+        var host = WebTools.Extends.App<Startup>(Array.Empty<string>(), port);
+        await host.StartAsync();
 
-        await WebTools.Extends.App<TrackerServer.Startup>(Array.Empty<string>(), 8100).StartAsync();
-
-        var downloader = host.Services.GetRequiredService<P2pDownloader>();
+        var scope = host.Services.CreateScope();
+        var downloader = scope.ServiceProvider.GetRequiredService<P2pDownloader>();
         await downloader.DownloadAsync(url, tracker, savePath, showProgressBar: !verbose);
+
+        await host.WaitForShutdownAsync();
     }
 }

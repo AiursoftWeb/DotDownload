@@ -10,7 +10,8 @@ public class P2pPlugin : IPlugin
     {
         return new CommandHandler[]
         {
-            new P2pHandler()
+            new P2pHandler(),
+            new ServeHandler()
         };
     }
 }

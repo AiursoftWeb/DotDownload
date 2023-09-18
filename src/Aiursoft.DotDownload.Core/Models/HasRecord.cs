@@ -1,4 +1,6 @@
-﻿namespace Aiursoft.DotDownload.Core.Models;
+﻿using Aiursoft.AiurEventSyncer.Abstract;
+
+namespace Aiursoft.DotDownload.Core.Models;
 
 public class HasRecord
 {

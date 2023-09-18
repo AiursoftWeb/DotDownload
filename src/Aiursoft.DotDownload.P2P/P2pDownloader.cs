@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
+using Aiursoft.AiurEventSyncer.Remotes;
 using Aiursoft.AiurProtocol;
-using Aiursoft.AiurVersionControl.CRUD;
-using Aiursoft.AiurVersionControl.Remotes;
 using Aiursoft.Canon;
 using Aiursoft.DotDownload.Core.Models;
 using Aiursoft.DotDownload.Core.Services;
@@ -94,7 +93,7 @@ public class P2pDownloader : ITransientDependency
         var trackerResponse = await trackerAccess.ServerInfoAsync(useTracker);
         var trackerEndpoint = new AiurApiEndpoint(useTracker, $"/api/{GetFileId(url)}/repo.ares", new { }).ToString();
         _logger.LogInformation($"Connecting to tracker: {trackerEndpoint} to exchange block share info.");
-        var remote = new WebSocketRemoteWithWorkSpace<CollectionWorkSpace<HasRecord>>(trackerEndpoint);
+        var remote = new WebSocketRemote<HasRecord>(trackerEndpoint);
         await remote.AttachAsync(database);
 
         if (showProgressBar) bar = new ProgressBar();
@@ -118,7 +117,7 @@ public class P2pDownloader : ITransientDependency
                     savedBlocks++;
                     bar?.Report((double)savedBlocks / blockCount);
 
-                    database.Add(new HasRecord 
+                    database.Commit(new HasRecord 
                     { 
                         BlockIndex = blockIndex,
                         RegisterTime = DateTime.UtcNow,

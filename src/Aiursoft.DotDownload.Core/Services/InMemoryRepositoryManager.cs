@@ -1,4 +1,4 @@
-﻿using Aiursoft.AiurVersionControl.CRUD;
+﻿using Aiursoft.AiurEventSyncer.Models;
 using Aiursoft.DotDownload.Core.Models;
 using Aiursoft.Scanner.Abstractions;
 using System.Collections.Concurrent;
@@ -7,16 +7,16 @@ namespace Aiursoft.DotDownload.Core.Services;
 
 public class InMemoryRepositoryManager : ISingletonDependency
 {
-    private ConcurrentDictionary<string, CollectionRepository<HasRecord>> InMemoryRepositories { get; set; } = new ConcurrentDictionary<string, CollectionRepository<HasRecord>>();
+    private ConcurrentDictionary<string, Repository<HasRecord>> InMemoryRepositories { get; set; } = new ConcurrentDictionary<string, Repository<HasRecord>>();
     private object reposLock = new object();
 
-    public CollectionRepository<HasRecord> GetCollection(string channel)
+    public Repository<HasRecord> GetCollection(string channel)
     {
         lock (reposLock)
         {
             if (!InMemoryRepositories.ContainsKey(channel))
             {
-                var collection = new CollectionRepository<HasRecord>();
+                var collection = new Repository<HasRecord>();
                 InMemoryRepositories[channel] = collection;
             }
         }
@@ -24,7 +24,7 @@ public class InMemoryRepositoryManager : ISingletonDependency
     }
 
     // Debug usage.
-    public ConcurrentDictionary<string, CollectionRepository<HasRecord>> GetTotal()
+    public ConcurrentDictionary<string, Repository<HasRecord>> GetTotal()
     {
         return InMemoryRepositories;
     }

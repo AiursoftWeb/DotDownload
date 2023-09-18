@@ -15,6 +15,7 @@ namespace Aiursoft.DotDownload.TrackerServer
     {
         public void ConfigureServices(IConfiguration configuration, IWebHostEnvironment environment, IServiceCollection services)
         {
+            services.AddHttpClient();
             services.AddTaskCanon();
             services.AddScannedDependencies();
             services.AddTrackerAccess();
