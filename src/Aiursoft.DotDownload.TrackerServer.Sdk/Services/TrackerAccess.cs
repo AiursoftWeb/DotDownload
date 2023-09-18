@@ -1,8 +1,8 @@
 ﻿using Aiursoft.AiurProtocol;
-using Aiursoft.Download.TrackerServer.Sdk.Models;
+using Aiursoft.DotDownload.TrackerServer.Sdk.Models;
 using Aiursoft.Scanner.Abstractions;
 
-namespace Aiursoft.Download.TrackerServer.Sdk.Services
+namespace Aiursoft.DotDownload.TrackerServer.Sdk.Services
 {
     public class TrackerAccess : IScopedDependency
     {

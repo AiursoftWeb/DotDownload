@@ -7,7 +7,7 @@ using Aiursoft.AiurVersionControl.Remotes;
 using Aiursoft.Canon;
 using Aiursoft.DotDownload.Core.Models;
 using Aiursoft.DotDownload.Core.Services;
-using Aiursoft.Download.TrackerServer.Sdk.Services;
+using Aiursoft.DotDownload.TrackerServer.Sdk.Services;
 using Aiursoft.Scanner.Abstractions;
 using Microsoft.Extensions.Logging;
 

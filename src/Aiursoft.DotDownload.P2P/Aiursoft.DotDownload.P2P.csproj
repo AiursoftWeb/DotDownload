@@ -13,4 +13,7 @@
         <ProjectReference Include="..\Aiursoft.DotDownload.PluginFramework\Aiursoft.DotDownload.PluginFramework.csproj" />
         <ProjectReference Include="..\Aiursoft.DotDownload.TrackerServer\Aiursoft.DotDownload.TrackerServer.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Aiursoft.WebTools" Version="7.0.3" />
+    </ItemGroup>
 </Project>

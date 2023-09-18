@@ -3,7 +3,7 @@ using Aiursoft.AiurVersionControl.CRUD;
 using Aiursoft.DotDownload.Core.Models;
 using System.Collections.Concurrent;
 
-namespace Aiursoft.Download.TrackerServer.Sdk.Models;
+namespace Aiursoft.DotDownload.TrackerServer.Sdk.Models;
 
 public class ServerInfo : AiurResponse
 {

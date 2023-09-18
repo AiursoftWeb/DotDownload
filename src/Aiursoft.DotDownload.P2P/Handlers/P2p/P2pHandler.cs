@@ -2,6 +2,7 @@
 using Aiursoft.CommandFramework.Models;
 using Aiursoft.CommandFramework.Services;
 using Aiursoft.DotDownload.P2P;
+using Aiursoft.DotDownload.TrackerServer.Sdk;
 using Microsoft.Extensions.DependencyInjection;
 using System.CommandLine;
 
@@ -57,6 +58,8 @@ public class P2pHandler : CommandHandler
         var host = ServiceBuilder
         .BuildHost<Startup>(verbose)
         .Build();
+
+        await WebTools.Extends.App<TrackerServer.Startup>(Array.Empty<string>(), 8100).StartAsync();
 
         var downloader = host.Services.GetRequiredService<P2pDownloader>();
         await downloader.DownloadAsync(url, tracker, savePath, showProgressBar: !verbose);

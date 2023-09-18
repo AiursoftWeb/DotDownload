@@ -1,8 +1,8 @@
 ﻿using Aiursoft.AiurProtocol;
-using Aiursoft.Download.TrackerServer.Sdk.Services;
+using Aiursoft.DotDownload.TrackerServer.Sdk.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Aiursoft.Download.TrackerServer.Sdk
+namespace Aiursoft.DotDownload.TrackerServer.Sdk
 {
     public static class Extends
     {

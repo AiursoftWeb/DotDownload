@@ -1,11 +1,11 @@
 ﻿using Aiursoft.AiurProtocol;
 using Aiursoft.AiurProtocol.Server;
 using Aiursoft.DotDownload.Core.Services;
-using Aiursoft.Download.TrackerServer.Sdk.Models;
+using Aiursoft.DotDownload.TrackerServer.Sdk.Models;
 using Microsoft.AspNetCore.Mvc;
 using Aiursoft.AiurEventSyncer.WebExtends;
 
-namespace Aiursoft.Download.TrackerServer.Controllers;
+namespace Aiursoft.DotDownload.TrackerServer.Controllers;
 
 [Route("api")]
 public class ApiController : Controller
