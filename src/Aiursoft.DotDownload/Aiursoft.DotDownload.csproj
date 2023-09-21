@@ -29,6 +29,5 @@
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Aiursoft.DotDownload.Http\Aiursoft.DotDownload.Http.csproj" />
-        <ProjectReference Include="..\Aiursoft.DotDownload.P2P\Aiursoft.DotDownload.P2P.csproj" />
     </ItemGroup>
 </Project>

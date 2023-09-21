@@ -113,6 +113,4 @@ public class Downloader : ITransientDependency
         _logger.LogTrace("Download finished in {Elapsed} seconds.", watch.Elapsed.TotalSeconds);
         _logger.LogInformation("Download speed: {Speed}MB/s", (double)fileLength / 1024 / 1024 / watch.Elapsed.TotalSeconds);
     }
-    
-
 }
