@@ -17,14 +17,14 @@ public class Downloader : ITransientDependency
 
     public Downloader(
         DiskService diskService,
-        HttpClient httpClient,
+        IHttpClientFactory httpClient,
         CanonPool downloadPool,
         CanonQueue writePool,
         HttpBlockDownloader httpBlockDownloader,
         ILogger<Downloader> logger)
     {
         _diskService = diskService;
-        _httpClient = httpClient;
+        _httpClient = httpClient.CreateClient(nameof(Downloader));
         _downloadPool = downloadPool;
         _diskWriteQueue = writePool;
         this.httpBlockDownloader = httpBlockDownloader;
@@ -55,8 +55,7 @@ public class Downloader : ITransientDependency
         var fileLength = response.Content.Headers.ContentLength ?? 0;
         _logger.LogInformation("File length: {ContentLength}MB", fileLength / 1024 / 1024);
 
-        // TODO: What if server 301 or 302? Follow redirect.
-        if (response.Headers.AcceptRanges.Contains("bytes") != true)
+        if (!response.Headers.AcceptRanges.Contains("bytes"))
         {
             _logger.LogWarning("The server doesn't support multiple threads downloading. Using single block...");
             showProgressBar = false;

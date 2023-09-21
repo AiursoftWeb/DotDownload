@@ -12,5 +12,6 @@
     <ItemGroup>
         <PackageReference Include="Aiursoft.AiurEventSyncer" Version="7.0.0" />
         <PackageReference Include="Aiursoft.Canon" Version="7.0.2" />
-    </ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+	</ItemGroup>
 </Project>
