@@ -1,33 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <Version>7.0.6</Version>
-        <TargetFramework>net7.0</TargetFramework>
-        <AssemblyName>dot-download</AssemblyName>
-        <RootNamespace>Aiursoft.DotDownload</RootNamespace>
-        <IsTestProject>false</IsTestProject>
-        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <IsPackable>true</IsPackable>
-        <PackAsTool>true</PackAsTool>
-        <ToolCommandName>dot-download</ToolCommandName>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <SelfContained>false</SelfContained>
-        <PublishTrimmed>false</PublishTrimmed>
-        <PublishReadyToRun>false</PublishReadyToRun>
-        <PublishSingleFile>false</PublishSingleFile>
-        <Company>Aiursoft</Company>
-        <Product>DotDownload</Product>
-        <Authors>anduin</Authors>
-        <Description>A cli tool project helps downloading via HTTP.</Description>
-        <PackageId>Aiursoft.DotDownload</PackageId>
-        <PackageTags>cli nuget dotnet download</PackageTags>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageProjectUrl>https://gitlab.aiursoft.cn/Aiursoft/DotDownload</PackageProjectUrl>
-        <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://gitlab.aiursoft.cn/Aiursoft/DotDownload</RepositoryUrl>
-    </PropertyGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\Aiursoft.DotDownload.Http\Aiursoft.DotDownload.Http.csproj" />
-    </ItemGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <Version>7.0.7</Version>
+    <TargetFramework>net7.0</TargetFramework>
+    <AssemblyName>dot-download</AssemblyName>
+    <RootNamespace>Aiursoft.DotDownload</RootNamespace>
+    <IsTestProject>false</IsTestProject>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>dot-download</ToolCommandName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <SelfContained>false</SelfContained>
+    <PublishTrimmed>false</PublishTrimmed>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <PublishSingleFile>false</PublishSingleFile>
+    <Company>Aiursoft</Company>
+    <Product>DotDownload</Product>
+    <Authors>anduin</Authors>
+    <Description>A cli tool project helps downloading via HTTP.</Description>
+    <PackageId>Aiursoft.DotDownload</PackageId>
+    <PackageTags>cli nuget dotnet download</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://gitlab.aiursoft.cn/Aiursoft/DotDownload</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://gitlab.aiursoft.cn/Aiursoft/DotDownload</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aiursoft.DotDownload.Http\Aiursoft.DotDownload.Http.csproj" />
+  </ItemGroup>
 </Project>
