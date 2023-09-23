@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Aiursoft.Canon;
 using Aiursoft.DotDownload.Core.Models;
 using Aiursoft.Scanner.Abstractions;
