@@ -24,7 +24,6 @@ public class IntegrationTests
             });
     }
 
-
     [TestMethod]
     public async Task InvokeHelp()
     {
@@ -58,7 +57,7 @@ public class IntegrationTests
     {
         // Prepare
         var tempFolder = Path.Combine(Path.GetTempPath(), $"DotDownload-UT-{Guid.NewGuid()}");
-        var tempFile = Path.Combine(tempFolder, "testfile.bin");
+        var tempFile = Path.Combine(tempFolder, "test_file.bin");
         if (!Directory.Exists(tempFolder))
         {
             Directory.CreateDirectory(tempFolder);
