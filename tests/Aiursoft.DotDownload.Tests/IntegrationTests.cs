@@ -1,6 +1,6 @@
 ﻿using Aiursoft.CommandFramework.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.CommandLine;
+using Aiursoft.CommandFramework;
 using Aiursoft.DotDownload.Http;
 using Aiursoft.DotDownload.PluginFramework;
 
@@ -9,36 +9,48 @@ namespace Aiursoft.DotDownload.Tests;
 [TestClass]
 public class IntegrationTests
 {
-    private readonly RootCommand _program = new RootCommand("Test env.")
-        .AddGlobalOptions()
-        .AddPlugins(new HttpPlugin());
+    private readonly AiursoftCommand _program;
+
+    public IntegrationTests()
+    {
+        _program = new AiursoftCommand()
+            .Configure(command =>
+            {
+                command
+                    .AddGlobalOptions()
+                    .AddPlugins(
+                        new HttpPlugin()
+                    );
+            });
+    }
+
 
     [TestMethod]
     public async Task InvokeHelp()
     {
-        var result = await _program.InvokeAsync(new[] { "--help" });
-        Assert.AreEqual(0, result);
+        var result = await _program.TestRunAsync(new[] { "--help" });
+        Assert.AreEqual(0, result.ProgramReturn);
     }
 
     [TestMethod]
     public async Task InvokeVersion()
     {
-        var result = await _program.InvokeAsync(new[] { "--version" });
-        Assert.AreEqual(0, result);
+        var result = await _program.TestRunAsync(new[] { "--version" });
+        Assert.AreEqual(0, result.ProgramReturn);
     }
 
     [TestMethod]
     public async Task InvokeUnknown()
     {
-        var result = await _program.InvokeAsync(new[] { "--wtf" });
-        Assert.AreEqual(1, result);
+        var result = await _program.TestRunAsync(new[] { "--wtf" });
+        Assert.AreEqual(1, result.ProgramReturn);
     }
 
     [TestMethod]
     public async Task InvokeWithoutArg()
     {
-        var result = await _program.InvokeAsync(Array.Empty<string>());
-        Assert.AreEqual(1, result);
+        var result = await _program.TestRunAsync(Array.Empty<string>());
+        Assert.AreEqual(1, result.ProgramReturn);
     }
     
     [TestMethod]
@@ -53,7 +65,7 @@ public class IntegrationTests
         }
 
         // Run
-        var result = await _program.InvokeAsync(new[]
+        var result = await _program.TestRunAsync(new[]
         {
             "download",
             "--url",
@@ -66,7 +78,7 @@ public class IntegrationTests
         });
 
         // Assert
-        Assert.AreEqual(0, result);
+        Assert.AreEqual(0, result.ProgramReturn);
         Assert.IsTrue(File.Exists(tempFile));
         Assert.AreEqual(70013908, new FileInfo(tempFile).Length);
     }
