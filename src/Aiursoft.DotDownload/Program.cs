@@ -7,6 +7,8 @@ return await new AiursoftCommand()
     .Configure(command =>
     {
         command.AddGlobalOptions()
-            .AddPlugins(new HttpPlugin());
+            .AddPlugins(
+                new HttpPlugin()
+            );
     })
     .RunAsync(args);
