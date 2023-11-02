@@ -6,7 +6,8 @@ using Aiursoft.DotDownload.Http;
 return await new AiursoftCommand()
     .Configure(command =>
     {
-        command.AddGlobalOptions()
+        command
+            .AddGlobalOptions()
             .AddPlugins(
                 new HttpPlugin()
             );
