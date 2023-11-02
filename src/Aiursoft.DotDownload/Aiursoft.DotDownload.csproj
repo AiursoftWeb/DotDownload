@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <Version>7.0.9</Version>
+    <Version>7.0.10</Version>
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>dot-download</AssemblyName>
     <RootNamespace>Aiursoft.DotDownload</RootNamespace>
@@ -26,8 +26,10 @@
     <PackageProjectUrl>https://gitlab.aiursoft.cn/Aiursoft/DotDownload</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://gitlab.aiursoft.cn/Aiursoft/DotDownload</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aiursoft.DotDownload.Http\Aiursoft.DotDownload.Http.csproj" />
+    <None Include="../../README.md" Pack="true" PackagePath="." />
   </ItemGroup>
 </Project>
