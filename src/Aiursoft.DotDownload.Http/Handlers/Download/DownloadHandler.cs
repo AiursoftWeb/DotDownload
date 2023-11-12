@@ -62,7 +62,7 @@ public class DownloadHandler : CommandHandler
     private async Task Execute(bool verbose, string url, string savePath, int threads, int blockSize)
     {
         var host = ServiceBuilder
-            .BuildHost<Startup>(verbose)
+            .CreateCommandHostBuilder<Startup>(verbose)
             .Build();
 
         var downloader = host.Services.GetRequiredService<Downloader>();
