@@ -4,6 +4,7 @@
 [![Pipeline stat](https://gitlab.aiursoft.cn/Aiursoft/DotDownload/badges/master/pipeline.svg)](https://gitlab.aiursoft.cn/Aiursoft/DotDownload/-/pipelines)
 [![Test Coverage](https://gitlab.aiursoft.cn/Aiursoft/DotDownload/badges/master/coverage.svg)](https://gitlab.aiursoft.cn/Aiursoft/DotDownload/-/pipelines)
 [![NuGet version (Aiursoft.DotDownload)](https://img.shields.io/nuget/v/Aiursoft.DotDownload.svg)](https://www.nuget.org/packages/Aiursoft.DotDownload/)
+[![ManHours](https://manhours.aiursoft.cn/gitlab/gitlab.aiursoft.cn/aiursoft/dotdownload)](https://gitlab.aiursoft.cn/aiursoft/dotdownload/-/commits/master?ref_type=heads)
 
 This project helps you download a file with multiple threads.
 
