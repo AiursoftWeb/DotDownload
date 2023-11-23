@@ -80,6 +80,9 @@ public class IntegrationTests
         Assert.AreEqual(0, result.ProgramReturn);
         Assert.IsTrue(File.Exists(tempFile));
         Assert.AreEqual(70013908, new FileInfo(tempFile).Length);
+        
+        // Clean
+        File.Delete(tempFile);
     }
 }
 
