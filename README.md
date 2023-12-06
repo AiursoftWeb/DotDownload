@@ -25,7 +25,7 @@ dotnet tool install --global Aiursoft.DotDownload
 After getting the binary, run it directly in the terminal.
 
 ```bash
-$ dot-download download -u https://anduins-site.aiur.site/winner.mp4
+$ dot-download https://anduins-site.aiur.site/winner.mp4
 ```
 
 That's it! The file will be downloaded to the current directory.
