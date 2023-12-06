@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Aiursoft.CommandFramework;
 using Aiursoft.DotDownload.Http.Handlers.Download;
 using Aiursoft.DotDownload.PluginFramework;
 
@@ -8,13 +7,7 @@ namespace Aiursoft.DotDownload.Tests;
 [TestClass]
 public class IntegrationTests
 {
-    private readonly AiursoftCommandApp _program;
-
-    public IntegrationTests()
-    {
-        var command = new DownloadHandler().BuildAsCommand();
-        _program = new AiursoftCommandApp(command);
-    }
+    private readonly DownloadHandler _program = new();
 
     [TestMethod]
     public async Task InvokeHelp()
