@@ -1,5 +1,4 @@
-﻿using Aiursoft.CommandFramework.Models;
-using System.CommandLine;
+﻿using System.CommandLine;
 
 namespace Aiursoft.DotDownload.PluginFramework;
 
