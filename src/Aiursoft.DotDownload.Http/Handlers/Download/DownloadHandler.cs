@@ -11,11 +11,11 @@ namespace Aiursoft.DotDownload.Http.Handlers.Download;
 
 public class DownloadHandler : ExecutableCommandHandlerBuilder
 {
-    public override string Name => "download";
+    protected override string Name => "download";
 
-    public override string Description => "Download an HTTP Url.";
-    
-    public override Option[] GetCommandOptions() => new Option[]
+    protected override string Description => "Download an HTTP Url.";
+
+    protected override Option[] GetCommandOptions() => new Option[]
     {
         CommonOptionsProvider.VerboseOption,
         OptionsProvider.Url,
