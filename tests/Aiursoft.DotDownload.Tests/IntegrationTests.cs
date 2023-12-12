@@ -8,7 +8,7 @@ namespace Aiursoft.DotDownload.Tests;
 [TestClass]
 public class IntegrationTests
 {
-    private readonly SingleCommandApp _program = new SingleCommandApp(new DownloadHandler())
+    private readonly SingleCommandApp<DownloadHandler> _program = new SingleCommandApp<DownloadHandler>()
         .WithDefaultOption(OptionsProvider.Url);
 
     [TestMethod]
