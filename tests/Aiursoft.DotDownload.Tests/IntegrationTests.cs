@@ -14,28 +14,28 @@ public class IntegrationTests
     [TestMethod]
     public async Task InvokeHelp()
     {
-        var result = await _program.TestRunAsync(new[] { "--help" });
+        var result = await _program.TestRunAsync(["--help"]);
         Assert.AreEqual(0, result.ProgramReturn);
     }
 
     [TestMethod]
     public async Task InvokeVersion()
     {
-        var result = await _program.TestRunAsync(new[] { "--version" });
+        var result = await _program.TestRunAsync(["--version"]);
         Assert.AreEqual(0, result.ProgramReturn);
     }
 
     [TestMethod]
     public async Task InvokeUnknown()
     {
-        var result = await _program.TestRunAsync(new[] { "--wtf" });
+        var result = await _program.TestRunAsync(["--wtf"]);
         Assert.AreEqual(1, result.ProgramReturn);
     }
 
     [TestMethod]
     public async Task InvokeWithoutArg()
     {
-        var result = await _program.TestRunAsync(Array.Empty<string>());
+        var result = await _program.TestRunAsync([]);
         Assert.AreEqual(1, result.ProgramReturn);
     }
     
@@ -51,15 +51,14 @@ public class IntegrationTests
         }
 
         // Run
-        var result = await _program.TestRunAsync(new[]
-        {
+        var result = await _program.TestRunAsync([
             "https://videos.aiursoft.cn/media/encoded/13/anduin/eeca2cf5a82b4a12a399b90a1a7a7dfa.eeca2cf5a82b4a12a399b90a1a7a7dfa.2023-03-05_13-20-08.mkv.mp4",
             "--file",
             tempFile,
             "--verbose",
             "--threads",
             "16"
-        }, OptionsProvider.Url);
+        ], OptionsProvider.Url);
 
         // Assert
         Assert.AreEqual(0, result.ProgramReturn);

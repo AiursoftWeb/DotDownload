@@ -15,14 +15,14 @@ public class DownloadHandler : ExecutableCommandHandlerBuilder
 
     protected override string Description => "Download an HTTP Url.";
 
-    protected override Option[] GetCommandOptions() => new Option[]
-    {
+    protected override Option[] GetCommandOptions() =>
+    [
         CommonOptionsProvider.VerboseOption,
         OptionsProvider.Url,
         OptionsProvider.SavePath,
         OptionsProvider.Threads,
         OptionsProvider.BlockSize
-    };
+    ];
 
     protected override async Task Execute(InvocationContext context)
     {
