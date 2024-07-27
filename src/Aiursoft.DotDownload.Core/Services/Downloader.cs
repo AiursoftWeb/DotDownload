@@ -1,5 +1,5 @@
 using Aiursoft.Canon;
-using Aiursoft.CommandFramework.Models;
+using Aiursoft.CommandFramework.ProgressBar;
 using Aiursoft.Scanner.Abstractions;
 using Microsoft.Extensions.Logging;
 
