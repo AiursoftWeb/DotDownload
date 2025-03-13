@@ -8,7 +8,7 @@
 
 This project helps you download a file with multiple threads.
 
-## Install
+## Installation
 
 Requirements:
 
