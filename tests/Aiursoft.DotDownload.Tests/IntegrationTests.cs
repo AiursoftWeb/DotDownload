@@ -1,5 +1,4 @@
 ﻿using Aiursoft.CommandFramework;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aiursoft.DotDownload.Http.Handlers.Download;
 using Aiursoft.DotDownload.PluginFramework;
 
@@ -38,7 +37,7 @@ public class IntegrationTests
         var result = await _program.TestRunAsync([]);
         Assert.AreEqual(1, result.ProgramReturn);
     }
-    
+
     [TestMethod]
     public async Task InvokeDownload()
     {
@@ -52,7 +51,7 @@ public class IntegrationTests
 
         // Run
         var result = await _program.TestRunAsync([
-            "https://videos.aiursoft.cn/media/encoded/13/anduin/eeca2cf5a82b4a12a399b90a1a7a7dfa.eeca2cf5a82b4a12a399b90a1a7a7dfa.2023-03-05_13-20-08.mkv.mp4",
+            "https://pub.aiursoft.cn/nssm.exe",
             "--file",
             tempFile,
             "--verbose",
@@ -63,8 +62,8 @@ public class IntegrationTests
         // Assert
         Assert.AreEqual(0, result.ProgramReturn);
         Assert.IsTrue(File.Exists(tempFile));
-        Assert.AreEqual(70013908, new FileInfo(tempFile).Length);
-        
+        Assert.AreEqual(331264, new FileInfo(tempFile).Length);
+
         // Clean
         File.Delete(tempFile);
     }
