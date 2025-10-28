@@ -23,9 +23,9 @@
     <PackageId>Aiursoft.DotDownload</PackageId>
     <PackageTags>cli nuget dotnet download</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://gitlab.aiursoft.cn/Aiursoft/DotDownload</PackageProjectUrl>
+    <PackageProjectUrl>https://gitlab.aiursoft.com/Aiursoft/DotDownload</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://gitlab.aiursoft.cn/Aiursoft/DotDownload</RepositoryUrl>
+    <RepositoryUrl>https://gitlab.aiursoft.com/Aiursoft/DotDownload</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>

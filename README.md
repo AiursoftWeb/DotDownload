@@ -1,10 +1,10 @@
 # Aiursoft DotDownload
 
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.cn/anduin/DotDownload/-/blob/master/LICENSE)
-[![Pipeline stat](https://gitlab.aiursoft.cn/Aiursoft/DotDownload/badges/master/pipeline.svg)](https://gitlab.aiursoft.cn/Aiursoft/DotDownload/-/pipelines)
-[![Test Coverage](https://gitlab.aiursoft.cn/Aiursoft/DotDownload/badges/master/coverage.svg)](https://gitlab.aiursoft.cn/Aiursoft/DotDownload/-/pipelines)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.com/anduin/DotDownload/-/blob/master/LICENSE)
+[![Pipeline stat](https://gitlab.aiursoft.com/Aiursoft/DotDownload/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/Aiursoft/DotDownload/-/pipelines)
+[![Test Coverage](https://gitlab.aiursoft.com/Aiursoft/DotDownload/badges/master/coverage.svg)](https://gitlab.aiursoft.com/Aiursoft/DotDownload/-/pipelines)
 [![NuGet version (Aiursoft.DotDownload)](https://img.shields.io/nuget/v/Aiursoft.DotDownload.svg)](https://www.nuget.org/packages/Aiursoft.DotDownload/)
-[![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.cn/aiursoft/dotdownload.svg)](https://gitlab.aiursoft.cn/aiursoft/dotdownload/-/commits/master?ref_type=heads)
+[![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.com/aiursoft/dotdownload.svg)](https://gitlab.aiursoft.com/aiursoft/dotdownload/-/commits/master?ref_type=heads)
 
 This project helps you download a file with multiple threads.
 
