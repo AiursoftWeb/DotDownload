@@ -51,7 +51,7 @@ public class IntegrationTests
 
         // Run
         var result = await _program.TestRunAsync([
-            "https://pub.aiursoft.cn/nssm.exe",
+            "https://pub.aiursoft.com/nssm.exe",
             "--file",
             tempFile,
             "--verbose",
