@@ -25,7 +25,7 @@ dotnet tool install --global Aiursoft.DotDownload
 After getting the binary, run it directly in the terminal.
 
 ```bash
-$ dot-download https://anduins-site.aiur.site/winner.mp4
+$ dot-download https://download.anduinos.com/1.4/1.4.0/AnduinOS-1.4.0-en_US.iso
 ```
 
 That's it! The file will be downloaded to the current directory.
