@@ -2,7 +2,6 @@
 using Aiursoft.CommandFramework.Models;
 using Aiursoft.CommandFramework.Services;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using Microsoft.Extensions.DependencyInjection;
 using Aiursoft.DotDownload.Core.Services;
 using Aiursoft.DotDownload.PluginFramework;
