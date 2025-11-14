@@ -24,14 +24,14 @@ public class DownloadHandler : ExecutableCommandHandlerBuilder
         OptionsProvider.BlockSize
     ];
 
-    protected override async Task Execute(InvocationContext context)
+    protected override async Task Execute(ParseResult context)
     {
-        var verbose = context.ParseResult.GetValueForOption(CommonOptionsProvider.VerboseOption);
-        var url = context.ParseResult.GetValueForOption(OptionsProvider.Url)!;
-        var savePath = context.ParseResult.GetValueForOption(OptionsProvider.SavePath)!;
-        var threads = context.ParseResult.GetValueForOption(OptionsProvider.Threads);
-        var blockSize = context.ParseResult.GetValueForOption(OptionsProvider.BlockSize);
-        
+        var verbose = context.GetValue(CommonOptionsProvider.VerboseOption);
+        var url = context.GetValue(OptionsProvider.Url)!;
+        var savePath = context.GetValue(OptionsProvider.SavePath)!;
+        var threads = context.GetValue(OptionsProvider.Threads);
+        var blockSize = context.GetValue(OptionsProvider.BlockSize);
+
         var host = ServiceBuilder
             .CreateCommandHostBuilder<Startup>(verbose)
             .Build();

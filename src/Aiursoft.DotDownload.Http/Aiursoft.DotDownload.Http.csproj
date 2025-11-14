@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Aiursoft.DotDownload.Http</AssemblyName>
     <RootNamespace>Aiursoft.DotDownload.Http</RootNamespace>
     <IsTestProject>false</IsTestProject>
@@ -14,6 +14,6 @@
     <ProjectReference Include="..\Aiursoft.DotDownload.PluginFramework\Aiursoft.DotDownload.PluginFramework.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Aiursoft.Scanner" Version="9.0.11" />
+    <PackageReference Include="Aiursoft.Scanner" Version="10.0.0" />
   </ItemGroup>
 </Project>
