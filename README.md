@@ -3,6 +3,7 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AiursoftWeb/dotdownload/blob/master/LICENSE)
 [![Pipeline stat](https://gitlab.aiursoft.com/Aiursoft/DotDownload/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/Aiursoft/DotDownload/-/pipelines)
 [![Test Coverage](https://gitlab.aiursoft.com/Aiursoft/DotDownload/badges/master/coverage.svg)](https://gitlab.aiursoft.com/Aiursoft/DotDownload/-/pipelines)
+[![S360 compliance](https://s360.aiursoft.com/badge.svg?project=aiursoft%2Fdotdownload)](https://s360.aiursoft.com/SupplyChain?tab=projects&project=aiursoft%2Fdotdownload&scope=baseline&ecosystem=all)
 [![NuGet version (Aiursoft.DotDownload)](https://img.shields.io/nuget/v/Aiursoft.DotDownload.svg)](https://www.nuget.org/packages/Aiursoft.DotDownload/)
 [![Man hours](https://manhours.aiursoft.com/r/github.com/aiursoftweb/dotdownload.svg)](https://manhours.aiursoft.com/r/github.com/aiursoftweb/dotdownload.html)
 
